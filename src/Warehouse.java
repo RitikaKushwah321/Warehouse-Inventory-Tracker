@@ -22,6 +22,8 @@ public class Warehouse {
         observers.add(observer);
     }
 
+
+
     private void notifyObservers(Product product) {
         for (StockObserver observer : observers) {
             observer.update(product);
@@ -92,5 +94,27 @@ public class Warehouse {
         } catch (NumberFormatException e) {
             System.err.println("❌ Error parsing number from file: " + e.getMessage());
         }
+    }
+
+    /**
+     * Saare products ko ek formatted table mein console par display karta hai.
+     */
+    public void displayInventory() {
+        System.out.println("\n-------------------- CURRENT INVENTORY --------------------");
+        System.out.printf("| %-10s | %-20s | %-10s | %-10s |\n", "ID", "Name", "Quantity", "Threshold");
+        System.out.println("---------------------------------------------------------");
+
+        if (inventory.isEmpty()) {
+            System.out.println("| No products in the warehouse yet.                     |");
+        } else {
+            for (Product product : inventory.values()) {
+                System.out.printf("| %-10s | %-20s | %-10d | %-10d |\n",
+                    product.getId(),
+                    product.getName(),
+                    product.getQuantity(),
+                    product.getThreshold());
+            }
+        }
+        System.out.println("---------------------------------------------------------");
     }
 }
