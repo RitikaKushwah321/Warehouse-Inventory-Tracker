@@ -1,5 +1,3 @@
-// src/LowStockNotifier.java
-
 public class LowStockNotifier implements StockObserver {
     @Override
     public void update(Product product) {
