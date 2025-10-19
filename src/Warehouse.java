@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 // src/Warehouse.java
+=======
+>>>>>>> 8788f26080abade503f9d74a3575c5c658565122
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -105,6 +108,7 @@ public class Warehouse {
         }
         System.out.println("---------------------------------------------------------");
     }
+<<<<<<< HEAD
 
     // --- NEW METHODS FOR UPDATE AND DELETE ---
     public void updateProduct(String id, String newName, int newThreshold) {
@@ -127,3 +131,6 @@ public class Warehouse {
         }
     }
 }
+=======
+}
+>>>>>>> 8788f26080abade503f9d74a3575c5c658565122
