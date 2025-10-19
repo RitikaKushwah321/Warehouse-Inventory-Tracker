@@ -1,5 +1,4 @@
 // src/Warehouse.java
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -21,18 +20,9 @@ public class Warehouse {
         loadInventoryFromFile();
     }
 
-    // === YEH METHOD CLASS KE ANDAR HONA CHAHIYE ===
-    /**
-     * Warehouse ka naam return karta hai.
-     */
-    public String getWarehouseName() {
-        return warehouseName;
-    }
-    // ===============================================
+    public String getWarehouseName() { return warehouseName; }
 
-    public void addObserver(StockObserver observer) {
-        observers.add(observer);
-    }
+    public void addObserver(StockObserver observer) { observers.add(observer); }
 
     private void notifyObservers(Product product) {
         for (StockObserver observer : observers) {
@@ -62,7 +52,6 @@ public class Warehouse {
             System.out.println("❌ [" + warehouseName + "] Error: Product with ID " + productId + " not found.");
             return;
         }
-
         if (product.getQuantity() >= quantity) {
             product.decreaseQuantity(quantity);
             System.out.println("🛒 [" + warehouseName + "] Fulfilled order for " + quantity + " units of '" + product.getName() + "'. Remaining: " + product.getQuantity());
@@ -106,7 +95,6 @@ public class Warehouse {
         System.out.println("\n----------- INVENTORY FOR " + warehouseName.toUpperCase() + " WAREHOUSE -----------");
         System.out.printf("| %-10s | %-20s | %-10s | %-10s |\n", "ID", "Name", "Quantity", "Threshold");
         System.out.println("---------------------------------------------------------");
-
         if (inventory.isEmpty()) {
             System.out.println("| No products in this warehouse yet.                     |");
         } else {
@@ -118,4 +106,24 @@ public class Warehouse {
         System.out.println("---------------------------------------------------------");
     }
 
-} // <<<<<<<<<<<< YEH WAREHOUSE CLASS KA AAKHRI BRACE HAI
+    // --- NEW METHODS FOR UPDATE AND DELETE ---
+    public void updateProduct(String id, String newName, int newThreshold) {
+        Product product = inventory.get(id);
+        if (product != null) {
+            product.setName(newName);
+            product.setThreshold(newThreshold);
+            System.out.println("✅ [" + warehouseName + "] Product " + id + " updated successfully.");
+        } else {
+            System.out.println("❌ [" + warehouseName + "] Error: Product with ID " + id + " not found.");
+        }
+    }
+
+    public void deleteProduct(String id) {
+        if (inventory.containsKey(id)) {
+            inventory.remove(id);
+            System.out.println("🗑️ [" + warehouseName + "] Product " + id + " deleted successfully.");
+        } else {
+            System.out.println("❌ [" + warehouseName + "] Error: Product with ID " + id + " not found.");
+        }
+    }
+}

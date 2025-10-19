@@ -11,18 +11,23 @@ public class Product {
         this.threshold = threshold;
     }
 
-    // Getter methods
+    // Getter methods (no change)
     public String getId() { return id; }
     public String getName() { return name; }
     public int getQuantity() { return quantity; }
     public int getThreshold() { return threshold; }
 
-    // Methods to change quantity
-    public void increaseQuantity(int amount) {
-        this.quantity += amount;
+    // Methods to change quantity (no change)
+    public void increaseQuantity(int amount) { this.quantity += amount; }
+    public void decreaseQuantity(int amount) { this.quantity -= amount; }
+
+    
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void decreaseQuantity(int amount) {
-        this.quantity -= amount;
+    
+    public void setThreshold(int threshold) {
+        this.threshold = threshold;
     }
 }
